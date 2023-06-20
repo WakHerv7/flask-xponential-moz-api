@@ -143,7 +143,7 @@ def moz_link_status():
     auth = ("mozscape-a72397d745", "b49c556e5f8d6168271989d1f81b3de7")
     url = "https://lsapi.seomoz.com/v2/link_status"
     data = """{
-            "target": %s
+            "target": "%s",
             "sources": %s,
             "source_scope": "root_domain",
             "target_scope": "page"
