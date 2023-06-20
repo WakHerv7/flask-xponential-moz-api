@@ -180,17 +180,20 @@ def moz_linking_root_domains():
 #-------------------------------------
 @app.route("/moz/url_metrics", methods=['POST'])
 def moz_url_metrics():
-    target = request.get_json()['target']
-    target = '", "'.join(target)
+    targets = request.get_json()['targets']
+    
+    targets = '", "'.join(targets)
     target_text = '[""]'
-    target_text = target_text[:2] + target + target_text[2:]
+    target_text = target_text[:2] + targets + target_text[2:]
+    
+    print(target_text)
     auth = ("mozscape-a72397d745", "b49c556e5f8d6168271989d1f81b3de7")
     url = "https://lsapi.seomoz.com/v2/url_metrics"
     data = """{
             "targets": %s
     }"""%(target_text)
     
-    if target:
+    if targets:
         response = requests.post(url, data=data, auth=auth)
         return Response(response)
 
