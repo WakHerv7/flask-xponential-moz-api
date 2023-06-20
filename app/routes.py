@@ -159,15 +159,15 @@ def moz_link_status():
 #-------------------------------------
 @app.route("/moz/linking_root_domains", methods=['POST'])
 def moz_linking_root_domains():
-    target = request.get_json()['target']
+    target = str(request.get_json()['target'])
     auth = ("mozscape-a72397d745", "b49c556e5f8d6168271989d1f81b3de7")
     url = "https://lsapi.seomoz.com/v2/linking_root_domains"
     data = """{
-            "target": "%s",
-            "target_scope": "page",
-            "filter": “external",
-            "sort": "source_domain_authority",
-            "limit": 5
+        "target": "%s",
+        "target_scope": "page",
+        "filter": "external",
+        "sort": "source_domain_authority",
+        "limit": 5
     }"""%(target)
     
     if target:
